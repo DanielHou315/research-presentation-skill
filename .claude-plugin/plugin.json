@@ -1,15 +1,22 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
-  "name": "my-plugin",
-  "displayName": "My Plugin",
-  "version": "0.0.0",
-  "description": "Template plugin — run scripts/init_plugin.sh to rename it, then describe what the plugin does and when to use it.",
+  "name": "research-talk-crafter",
+  "displayName": "Research Talk Crafter",
+  "version": "0.1.0",
+  "description": "Craft academic and research talks (conference, job talk, defense, lab meeting, lecture): talk structure, sentence-title slides, figure and robot-video rules, and five locked slide themes. Use when making or reviewing any research presentation or slide deck.",
   "author": {
-    "name": "Your Name",
-    "email": "you@example.com"
+    "name": "Huaidian Daniel Hou",
+    "email": "DanielHou315@users.noreply.github.com"
   },
   "license": "MIT",
   "keywords": [
-    "template"
+    "research",
+    "presentation",
+    "slides",
+    "academic-talk",
+    "conference-talk",
+    "thesis-defense",
+    "robotics",
+    "slide-themes"
   ]
 }

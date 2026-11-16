@@ -1,156 +1,113 @@
-# multi-harness-plugin-template
+# Research Talk Crafter
 
-[![Validate plugin](https://github.com/DanielHou315/multi-harness-plugin-template/actions/workflows/validate.yml/badge.svg)](https://github.com/DanielHou315/multi-harness-plugin-template/actions/workflows/validate.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Use this template](https://img.shields.io/badge/-Use%20this%20template-2ea44f?logo=github)](https://github.com/DanielHou315/multi-harness-plugin-template/generate)
+Craft academic and research talks (conference, job talk, defense, lab meeting, lecture): talk structure, sentence-title slides, figure and robot-video rules, and five locked slide themes. Use when making or reviewing any research presentation or slide deck.
 
-**A Claude Code plugin template that also ships as a Cursor plugin, a Codex plugin,
-a pi package, and an opencode plugin — from one source tree.** Write your
-[Agent Skills](https://agentskills.io) (`SKILL.md`), slash commands, subagents, and
-MCP servers once; the repo is its own one-plugin marketplace, and a validator in CI
-keeps the manifests in sync.
+An agent plugin with one source tree, installable in **Claude Code**, **Cursor**,
+**Codex**, **pi**, and **opencode**.
 
-The repository root *is* the plugin: shared components (`skills/`, `commands/`,
-`agents/`) sit at the top level, a small manifest per harness describes them, and a
-generated one-entry catalog makes the repo installable as a marketplace.
-One repository, one plugin — create a new repository from this template for each
-plugin you build.
+## What it does
 
-### Supported harnesses
+- **Plans the talk** before any slide exists: talk type, the one-sentence message, and a slide
+  plan with a sentence title, an evidence medium and a "do not say" line per slide.
+- **Writes research slides**: one point per slide, sentence titles, figures redrawn for the
+  talk, honest robot-video labels (speed, autonomy, trial counts), at most one equation per
+  slide, and a close on contributions with backup slides.
+- **Builds in one of five locked themes**: their fonts, px type scales, colour tokens and devices
+  are kept exactly as shipped. Each theme also has research layouts (figure, robot video,
+  equation, results table) built from its own tokens.
+- **Doesn't pick your output format.** The agent builds an HTML deck, a .pptx file, Claude
+  Slides, Codex slides or anything else; `references/porting.md` says how to carry a theme over.
+  Animation, video and embeds are used only where the harness supports them.
+- **Reviews the deck** in at most 3 rounds, with a linter that checks fonts and sizes against
+  the theme's spec.
 
-| Harness | Manifest | Loads | Install from |
-|---|---|---|---|
-| Claude Code | `.claude-plugin/plugin.json` | skills, commands, agents, hooks, `.mcp.json` | the repo as a marketplace |
-| Cursor | `.cursor-plugin/plugin.json` | skills, commands, agents, `rules/*.mdc`, `mcp.json` | the repo |
-| Codex | `.codex-plugin/plugin.json` | skills, hooks, `.mcp.json` | the same marketplace |
-| [pi](https://github.com/earendil-works/pi) | `package.json` (`"pi"` key) | skills, commands (as prompt templates) | `pi install git:…` |
-| [opencode](https://opencode.ai) | `.opencode-plugin/` adapter | skills, commands, agents, `.mcp.json` | `opencode plugin github:…` |
+## Components
 
-Exact install commands and per-harness caveats are in
-[How one tree serves three harnesses](#how-one-tree-serves-three-harnesses),
-[pi](#pi), and [opencode](#opencode) below.
-
-## Quick start
-
-1. Click **Use this template** on GitHub (or
-   `gh repo create my-plugin --template DanielHou315/multi-harness-plugin-template --private --clone`).
-2. Initialise it — this renames the plugin in both manifests, writes a starter
-   README over this one, regenerates the catalog, validates, and then removes itself:
-
-   ```bash
-   scripts/init_plugin.sh doc-translator "Translate Markdown docs between languages. Use when asked to translate or localise documentation."
-   ```
-
-   Author name and email default to your `git config`; see
-   `scripts/init_plugin.sh --help` for `--display-name`, `--author`, `--email`,
-   `--category`, and `--keep`.
-3. Replace the example components with real ones and commit.
-
-Requires `bash` and [`jq`](https://jqlang.github.io/jq/).
-
-## What's in the box
+| Type | Name | Purpose |
+|------|------|---------|
+| Skill | `research-talk-crafter` | Talk craft, theme selection and use, porting, animation principles, review |
+| Command | `/research-talk` | Thin entry point that runs the skill on `<topic or material>` |
 
 ```
-├── .claude-plugin/
-│   ├── plugin.json            # Claude Code manifest
-│   └── marketplace.json       # one-entry catalog — GENERATED, do not edit
-├── .cursor-plugin/plugin.json # Cursor manifest
-├── .codex-plugin/plugin.json  # Codex manifest
-├── .opencode-plugin/          # opencode adapter (package.json + index.js)
-├── marketplace.config.json    # catalog-only fields (category)
-├── package.json               # pi package manifest ("pi" key)
-├── skills/example-skill/SKILL.md
-├── commands/example-command.md
-├── agents/example-agent.md
-├── scripts/
-│   ├── init_plugin.sh         # one-shot: template -> your plugin
-│   ├── gen_catalog.sh         # regenerates the catalog from plugin.json
-│   └── validate_plugin.sh     # the validator (CI + local)
-├── docs/develop_plugin.md     # full structure reference
-├── AGENTS.md / CLAUDE.md      # rules for coding agents working on the plugin
-└── .github/workflows/validate.yml
+skills/research-talk-crafter/
+  SKILL.md
+  references/   talk-craft.md (research synthesis + sources), animation.md, animation-research.md,
+                porting.md, review-checklist.md
+  themes/       specs.json + one folder per theme: example.html (seed), layouts.html (research
+                slides), THEME.md (exact spec), UPSTREAM-SKILL.md, LICENSE files
+  scripts/      lint_deck.py, check_contrast.py, render_math.mjs
 ```
 
-## How one tree serves three harnesses
+## Themes
 
-| | Claude Code | Cursor | Codex |
+| Theme | Use for | Fonts | Source |
 |---|---|---|---|
-| Manifest | `.claude-plugin/plugin.json` | `.cursor-plugin/plugin.json` | `.codex-plugin/plugin.json` |
-| Installed via | `.claude-plugin/marketplace.json` (`"source": "./"`) | the repo itself | the same Claude catalog |
-| Install | `claude plugin marketplace add <owner>/<repo>` then `claude plugin install <name>@<name>` | add the repo in plugin settings | `codex plugin marketplace add <owner>/<repo>` then `codex plugin add <name>@<name>` |
+| Notebook Tabs | thesis / capstone defenses, lectures | Bodoni Moda + DM Sans | [Zara Zhang](https://open-design.ai/plugins/example-fs-notebook-tabs/), MIT |
+| Pentagram Grid | results-heavy talks ("ours" = the red bar) | Helvetica Neue | [huashu / alchaincyf](https://open-design.ai/plugins/example-huashu-pentagram-grid/), MIT |
+| Product Launch | job talks, invited talks | Fraunces + Outfit + JetBrains Mono | [lewislulu / Open Design](https://open-design.ai/plugins/example-html-ppt-product-launch/), MIT + Apache-2.0 |
+| Tech Sharing | systems and robotics-software talks | Sora + IBM Plex Sans/Mono | [lewislulu / Open Design](https://open-design.ai/plugins/example-html-ppt-tech-sharing/), MIT + Apache-2.0 |
+| Cyber Terminal | live tooling demos in dark rooms | JetBrains Mono + Geist | [lewislulu / Open Design](https://open-design.ai/plugins/example-html-ppt-hermes-cyber-terminal/), MIT + Apache-2.0 |
+
+The themes are vendored unmodified with their licences; see [`THIRD_PARTY.md`](THIRD_PARTY.md).
+They are web-dense (body text 13–26px on a 1920×1080 canvas). Sizes are kept as shipped by
+design; each THEME.md flags the small ones.
+
+## Checking a deck
+
+```bash
+cd skills/research-talk-crafter
+python3 scripts/lint_deck.py path/to/deck.html --theme notebook-tabs
+python3 scripts/check_contrast.py "#f8f6f1" "#1a1a1a" "#6b6358"
+npm install --no-save katex mathjax-full && node scripts/render_math.mjs --mathml '\mathcal{L} = ...'
+```
+
+## Installation
+
+### Claude Code
+
+```bash
+claude plugin marketplace add DanielHou315/research-presentation-skill
+claude plugin install research-talk-crafter@research-talk-crafter
+```
+
+### Cursor
+
+Add this repository in Cursor's plugin settings — it reads
+`.cursor-plugin/plugin.json` at the repo root.
+
+### Codex
+
+```bash
+codex plugin marketplace add DanielHou315/research-presentation-skill
+codex plugin add research-talk-crafter@research-talk-crafter
+```
 
 ### pi
 
-| | pi coding agent |
-|---|---|
-| Manifest | `package.json` (the `"pi"` key) |
-| Installed via | the repo itself as a pi package (git, npm, or local path) |
-| Install | `pi install git:github.com/<owner>/<repo>` (append `@<ref>` to pin) |
-| Loads | `skills/` as skills; `commands/*.md` as prompt templates (`/example-command`) |
-| Not loaded | `agents/` (no subagents), `rules/`, `.mcp.json` (no built-in MCP) |
+```bash
+pi install git:github.com/DanielHou315/research-presentation-skill
+```
+
+Skills load as-is; commands become pi prompt templates (`/research-talk`).
 
 ### opencode
 
-| | opencode |
-|---|---|
-| Manifest | `.opencode-plugin/package.json` (plugin id = `name`) + `index.js` adapter |
-| Installed via | the repo as a git package (root `package.json` `exports["./server"]` → the adapter), or a local clone |
-| Install | `opencode plugin -g github:<owner>/<repo>` (append `#<ref>` to pin) |
-| Loads | `skills/` (via `skills.paths`), `commands/*.md` as commands, `agents/*.md` as subagents, `.mcp.json` servers |
-| Not loaded | `rules/`, `hooks/`; Claude-only frontmatter (`allowed-tools`, `tools`, `model: sonnet`) |
-
-From a local clone instead: `opencode plugin -g <dir>/.opencode-plugin` (then
-`git pull` there to update). Skills-only alternative, no adapter:
-`"skills": {"paths": ["<dir>/skills"]}` in `opencode.json`.
-
-## Day-to-day
-
 ```bash
-scripts/gen_catalog.sh               # after editing a plugin.json or marketplace.config.json
-scripts/validate_plugin.sh --strict  # before every commit; CI runs the same
-claude plugin validate . --strict    # optional, official Claude Code checker
-claude --plugin-dir .                # try the plugin without installing it
+opencode plugin -g github:DanielHou315/research-presentation-skill
 ```
 
-See [`docs/develop_plugin.md`](docs/develop_plugin.md) for manifest fields,
-component frontmatter, optional config files (MCP, hooks, rules), and everything
-the validator checks.
+The adapter in `.opencode-plugin/` registers the skills, commands, agents, and
+MCP servers. Append `#<tag>` to pin a version.
 
-## Contributing
+## Development
 
-Direct pushes to `main` are not accepted. Fork the repository, make your change on
-a branch in your fork, and open a pull request against `main`. CI must pass
-(`scripts/validate_plugin.sh --strict`) before a PR can be merged.
+See [`docs/develop_plugin.md`](docs/develop_plugin.md). Before every commit:
 
-## FAQ
+```bash
+scripts/gen_catalog.sh               # after editing a plugin.json
+scripts/validate_plugin.sh --strict
+```
 
-### How do I make a Claude Code plugin that also works in Cursor and Codex?
+---
 
-Create a repository from this template and run `scripts/init_plugin.sh`. All three
-harnesses read the same `skills/`, `commands/`, and `agents/` directories; each
-only needs its own small manifest (`.claude-plugin/`, `.cursor-plugin/`,
-`.codex-plugin/`), which the init script fills in and the validator keeps in sync.
-Codex installs from the same `marketplace.json` as Claude Code.
-
-### Can I publish Agent Skills (`SKILL.md`) this way without writing a full plugin?
-
-Yes. A plugin with only a `skills/` directory is valid — delete the example command
-and agent. The skills load in every harness above, including pi and opencode.
-
-### Do I need a separate marketplace repository?
-
-No. `scripts/gen_catalog.sh` generates a one-entry `.claude-plugin/marketplace.json`
-pointing at the repo root (`"source": "./"`), so `claude plugin marketplace add
-<owner>/<repo>` (or `codex plugin marketplace add`) works on the plugin repo itself.
-
-### How do I add an MCP server?
-
-Declare it in `.mcp.json` (Claude Code, Codex, opencode) and the same servers in
-`mcp.json` (Cursor). See [`docs/develop_plugin.md`](docs/develop_plugin.md) for
-`${CLAUDE_PLUGIN_ROOT}` handling in each harness. pi has no built-in MCP support.
-
-### How do I keep the manifests from drifting?
-
-Run `scripts/validate_plugin.sh --strict` before committing; the included GitHub
-Actions workflow runs it on every pull request. It checks name/version parity across
-all manifests, frontmatter on every component, and that the catalog isn't stale.
+Built with [multi-harness-plugin-template](https://github.com/DanielHou315/multi-harness-plugin-template).

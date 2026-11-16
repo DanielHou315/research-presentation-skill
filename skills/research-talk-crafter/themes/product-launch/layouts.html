@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[Talk title] — research layouts</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ============ tokens: warm editorial launch keynote ============ */
+/* one accent (burnt orange), warm off-white paper, warm off-black ink */
+:root{
+  --paper:#f7f3ec;
+  --paper-2:#efe9df;
+  --ink:#191511;
+  --ink-2:#544c44;
+  --ink-3:#6e6459;
+  --line:rgba(25,21,17,.13);
+  --line-strong:rgba(25,21,17,.32);
+  --accent:#a63e0c;
+  --accent-bright:#d9651f;
+  --font-display:'Fraunces',Georgia,serif;
+  --font-body:'Outfit',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+  --font-mono:'JetBrains Mono',SFMono-Regular,Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);
+  font-family:var(--font-body);font-weight:400;line-height:1.55;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{color:inherit;text-decoration:none}
+.mono{font-family:var(--font-mono)}
+
+/* ============ deck (static preview: slides stacked) ============ */
+.deck{width:100vw}
+.slide{position:relative;width:100vw;height:100vh;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:88px 104px;border-bottom:1px solid var(--line);page-break-after:always}
+
+/* shared footer baseline row */
+.base{position:absolute;left:104px;right:104px;bottom:42px;
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--font-mono);font-size:11.5px;letter-spacing:.04em;color:var(--ink-3)}
+
+/* ============ type scale ============ */
+.h1{font-family:var(--font-display);font-weight:560;font-variation-settings:'opsz' 110;
+  letter-spacing:-.018em;line-height:1.02;font-size:clamp(64px,7.6vw,104px);margin:0}
+.h2{font-family:var(--font-display);font-weight:540;font-variation-settings:'opsz' 90;
+  letter-spacing:-.014em;line-height:1.06;font-size:clamp(42px,4.8vw,62px);margin:0 0 10px}
+h4{font-family:var(--font-body);font-weight:600;font-size:20px;line-height:1.3;
+  letter-spacing:-.01em;margin:0 0 8px}
+.lede{font-size:20px;line-height:1.55;color:var(--ink-2);font-weight:300;max-width:56ch;margin:0}
+.dim{color:var(--ink-2);font-size:15.5px;line-height:1.6;margin:0;max-width:44ch}
+.kicker{font-family:var(--font-mono);font-size:12px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent);font-weight:500;margin:0 0 26px}
+em.ac{font-style:italic;color:var(--accent);font-weight:500}
+.brand{position:absolute;top:50px;left:104px;font-family:var(--font-mono);font-size:13px;
+  letter-spacing:.03em;color:var(--ink)}
+
+/* ============ entrance motion: transform+opacity only, ease-out, staggered ============ */
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.in{animation:rise .7s var(--ease) both}
+.in:nth-child(2){animation-delay:.06s}
+.in:nth-child(3){animation-delay:.12s}
+.in:nth-child(4){animation-delay:.18s}
+.in:nth-child(5){animation-delay:.24s}
+@media (prefers-reduced-motion:reduce){.in{animation:none}}
+
+/* ============ S1 cover ============ */
+.cover{justify-content:flex-end;padding-bottom:148px}
+.cover .kicker{margin-bottom:30px}
+.cover .lede{margin-top:34px}
+.cover .rule{width:72px;height:3px;background:var(--accent);margin:0 0 38px}
+
+/* ============ S2 introducing: centered nameplate ============ */
+.intro{align-items:center;text-align:center}
+.intro .h1{font-size:clamp(110px,12.5vw,168px);line-height:1}
+.intro .frame{border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);
+  padding:54px 64px 62px}
+.intro .lede{margin:28px auto 0}
+
+/* ============ hairline column grids (pillars / community / intelligence) ============ */
+.cols{display:grid;border-top:1px solid var(--line-strong);margin-top:46px}
+.cols.c3{grid-template-columns:repeat(3,1fr)}
+.cols.c2{grid-template-columns:repeat(2,1fr);max-width:980px}
+.col{padding:36px 40px 12px 0}
+.col+.col{border-left:1px solid var(--line);padding-left:40px}
+.col .glyph{display:block;color:var(--accent);font-size:26px;line-height:1;margin-bottom:22px}
+.col .stat{font-family:var(--font-display);font-weight:540;font-variation-settings:'opsz' 80;
+  letter-spacing:-.02em;font-size:clamp(40px,3.8vw,54px);line-height:1;margin:0 0 16px}
+
+/* ============ S6 how it works: indexed ledger rows ============ */
+.steps{border-top:1px solid var(--line-strong);margin-top:44px;max-width:900px}
+.step{display:grid;grid-template-columns:96px 1fr;gap:36px;padding:28px 0;
+  border-bottom:1px solid var(--line);align-items:start}
+.step .n{font-family:var(--font-display);font-style:italic;font-weight:500;
+  font-variation-settings:'opsz' 60;font-size:38px;line-height:1;color:var(--accent)}
+
+/* ============ S7 pricing: ledger compare ============ */
+.ledger{display:grid;grid-template-columns:1fr 1.15fr 1fr;border-top:1px solid var(--line-strong);
+  margin-top:44px;align-items:start}
+.plan{padding:34px 40px 8px 0}
+.plan+.plan{border-left:1px solid var(--line);padding-left:40px}
+.plan .who{font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);margin:0}
+.plan .amount{font-family:var(--font-display);font-weight:560;font-variation-settings:'opsz' 90;
+  letter-spacing:-.025em;line-height:1;font-size:clamp(54px,5.4vw,76px);margin:18px 0 12px}
+.plan ul{list-style:none;padding:0;margin:22px 0 0}
+.plan li{padding:9px 0;font-size:14.5px;color:var(--ink-2);border-top:1px solid var(--line)}
+.plan.od .who,.plan.od .amount{color:var(--accent)}
+.plan.od{position:relative}
+.plan.od::before{content:"";position:absolute;top:-1px;left:0;right:0;height:3px;background:var(--accent)}
+.plan.od li{color:var(--ink)}
+
+/* ============ S8 ship: the single inverted slide ============ */
+.ship{background:var(--ink);color:var(--paper);border-bottom:none}
+.ship .kicker{color:var(--accent-bright)}
+.ship .row{display:flex;gap:96px;align-items:center}
+.ship .q{font-family:var(--font-display);font-style:italic;font-weight:480;
+  font-variation-settings:'opsz' 80;letter-spacing:-.01em;line-height:1.22;
+  font-size:clamp(30px,3.3vw,42px);max-width:26ch;margin:0}
+.ship .attr{margin-top:30px;font-size:15px;color:rgba(247,243,236,.62)}
+.ship .tag{font-family:var(--font-mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;
+  color:rgba(247,243,236,.55);margin:0 0 18px}
+.ship .big{font-family:var(--font-display);font-weight:560;font-variation-settings:'opsz' 110;
+  letter-spacing:-.025em;line-height:1;font-size:clamp(80px,8vw,118px);color:var(--accent-bright)}
+.ship .cta{display:inline-block;margin-top:40px;background:var(--accent);color:#fff;
+  font-family:var(--font-body);font-weight:600;font-size:17px;letter-spacing:-.005em;
+  padding:18px 36px;border-radius:4px;transition:transform .25s var(--ease)}
+.ship .cta:hover{transform:translateY(-2px)}
+.ship .fine{font-size:12.5px;color:rgba(247,243,236,.66);margin-top:22px;font-family:var(--font-mono)}
+.ship .base{color:rgba(247,243,236,.52)}
+
+@media print{
+  .slide{page-break-after:always}
+}
+@media (max-width:768px){
+  .slide{padding:56px 28px;height:auto;min-height:100vh}
+  .base{left:28px;right:28px}
+  .brand{left:28px}
+  .cols.c3,.cols.c2,.ledger{grid-template-columns:1fr}
+  .col+.col,.plan+.plan{border-left:none;padding-left:0}
+  .ship .row{flex-direction:column;gap:48px;align-items:flex-start}
+}
+</style>
+<style id="research-layouts">
+/* === research layouts: tokens and px sizes from this theme only === */
+.rl-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;margin-top:46px;align-items:start;border-top:1px solid var(--line-strong);padding-top:36px}
+.rl-plot text{font-family:var(--font-body)}
+.rl-cap{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.04em;color:var(--ink-3);margin:14px 0 0}
+.rl-frame{position:relative;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);padding:28px 0;margin-top:40px}
+.rl-poster{height:520px;background:var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:rgba(247,243,236,.62)}
+.rl-tags{display:flex;gap:28px;margin-top:16px;font-family:var(--font-mono);font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+.rl-tags b{color:var(--accent);font-weight:500}
+.rl-eq{border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);padding:40px 0;margin-top:44px}
+.rl-math{font-family:var(--font-display);font-style:italic;font-size:62px;color:var(--ink)}
+.rl-term-a{color:var(--accent)}
+.rl-table{border-collapse:collapse;width:100%;margin-top:44px;font-size:20px}
+.rl-table th{font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:18px 32px 14px 0;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line)}
+.rl-table td{padding:16px 32px 16px 0;border-bottom:1px solid var(--line);color:var(--ink-2)}
+.rl-table tbody tr:last-child td{border-bottom:1px solid var(--line-strong)}
+.rl-table td+td{font-family:var(--font-mono)}
+.rl-table .rl-best td{color:var(--accent);font-weight:600}
+</style>
+</head>
+<body>
+<!-- research layouts for this theme: figure, robot video, equation, results table.
+     <head> and navigation script are the seed's, verbatim (see example.html, LICENSE).
+     Added CSS (#research-layouts) uses only this theme's tokens and px sizes.
+     Bracketed text is placeholder content: replace it all. -->
+<div class="deck">
+
+  <!-- R1. Figure -->
+  <section class="slide" data-title="Figure">
+    <p class="kicker">04 · Results</p>
+    <h2 class="h2">[Method] holds [metric] as [condition] grows; <em class="ac">[Baseline A] does not.</em></h2>
+    <div class="rl-grid">
+      <div><svg class="rl-plot" width="1000" height="480" viewBox="0 0 1000 480" role="img" aria-label="Placeholder plot: replace with your figure" font-family="Outfit">
+  <line x1="70" y1="420" x2="810" y2="420" stroke="rgba(25,21,17,.32)" stroke-width="1.5"/>
+  <line x1="70" y1="30" x2="70" y2="420" stroke="rgba(25,21,17,.32)" stroke-width="1.5"/>
+  <polyline points="70,163 162,191 255,219 348,247 440,276 532,304 625,332 718,361 810,389" fill="none" stroke="#6e6459" stroke-width="2.5" stroke-dasharray="8 6"/>
+  <polyline points="70,77 162,112 255,147 348,182 440,217 532,252 625,287 718,322 810,358" fill="none" stroke="#544c44" stroke-width="2.5"/>
+  <polyline points="70,61 162,63 255,67 348,73 440,83 532,95 625,109 718,127 810,147" fill="none" stroke="#a63e0c" stroke-width="4"/>
+  <text x="826" y="154" font-size="20" font-weight="700" fill="#a63e0c">[Ours]</text>
+  <text x="826" y="364" font-size="20" fill="#544c44">[Baseline A]</text>
+  <text x="826" y="395" font-size="20" fill="#6e6459">[Baseline B]</text>
+  <text x="440" y="466" font-size="15.5" text-anchor="middle" fill="rgba(25,21,17,.32)">[condition, unit] &#8594;</text>
+  <text x="22" y="225" font-size="15.5" text-anchor="middle" fill="rgba(25,21,17,.32)" transform="rotate(-90 22 225)">[metric] &#8593; better</text>
+</svg><p class="rl-cap">FIG. 3 · [METRIC] VS [CONDITION] · N = [N] TRIALS PER POINT</p></div>
+      <div><h4>What to look at</h4><p class="dim">[One sentence on where the curves separate and why it matters.]</p></div>
+    </div>
+    <div class="base"><span>[talk title]</span><span>R1</span></div>
+  </section>
+
+  <!-- R2. Robot video -->
+  <section class="slide" data-title="Video">
+    <p class="kicker">05 · In the lab</p>
+    <h2 class="h2">[The policy regrasps after an unseen push.]</h2>
+    <div class="rl-frame"><!-- Replace the poster div with your clip: <video class="rl-video" src="clip.mp4" poster="poster.jpg" muted loop playsinline></video> Keep the on-frame tags: speed, control mode, external aids, trial count. --><div class="rl-poster">[poster frame of the clip]</div>
+      <div class="rl-tags"><span><b>[4]&#215;</b> speed</span><span>autonomous</span><span>no motion capture</span><span>trial <b>[7] / [10]</b></span></div></div>
+    <div class="base"><span>[talk title]</span><span>R2</span></div>
+  </section>
+
+  <!-- R3. Equation -->
+  <section class="slide" data-title="Equation">
+    <p class="kicker">03 · Method</p>
+    <h2 class="h2">[One loss trains denoising <em class="ac">and</em> contact prediction.]</h2>
+    <div class="rl-eq"><math display="block" class="rl-math"><mrow>
+  <mi>&#8466;</mi><mo>=</mo>
+  <mrow class="rl-term-a"><mo>&#8214;</mo><mi>&#949;</mi><mo>&#8722;</mo><msub><mi>&#949;</mi><mi>&#952;</mi></msub><mo>(</mo><msub><mi>a</mi><mi>t</mi></msub><mo>,</mo><mi>t</mi><mo>)</mo><msup><mo>&#8214;</mo><mn>2</mn></msup></mrow>
+  <mo>+</mo><mi>&#955;</mi>
+  <mrow class="rl-term-b"><mi>BCE</mi><mo>(</mo><mi>c</mi><mo>,</mo><msub><mover><mi>c</mi><mo>^</mo></mover><mi>&#952;</mi></msub><mo>)</mo></mrow>
+</mrow></math></div>
+    <div class="cols c2" style="margin-top:0;border-top:none">
+      <div class="col"><h4 style="color:var(--accent)">Denoising term</h4><p class="dim">[Define &#949;, &#949;<sub>&#952;</sub>, a<sub>t</sub>, t in one line.]</p></div>
+      <div class="col"><h4>Contact term</h4><p class="dim">[Define c, &#265;<sub>&#952;</sub>, &#955; in one line.]</p></div>
+    </div>
+    <div class="base"><span>[talk title]</span><span>R3</span></div>
+  </section>
+
+  <!-- R4. Results table -->
+  <section class="slide" data-title="Results table">
+    <p class="kicker">04 · Results</p>
+    <h2 class="h2">[Method] is best on [k] of [K] tasks.</h2>
+    <table class="rl-table"><thead><tr><th>Method</th><th>[Task 1] &#8593;</th><th>[Task 2] &#8593;</th><th>[Task 3] &#8593;</th></tr></thead><tbody><tr class="rl-best"><td>[Ours]</td><td>[0.00]</td><td>[0.00]</td><td>[0.00]</td></tr><tr class=""><td>[Baseline A]</td><td>[0.00]</td><td>[0.00]</td><td>[0.00]</td></tr><tr class=""><td>[Baseline B]</td><td>[0.00]</td><td>[0.00]</td><td>[0.00]</td></tr><tr class=""><td>[Ablation: no contact term]</td><td>[0.00]</td><td>[0.00]</td><td>[0.00]</td></tr></tbody></table>
+    <p class="rl-cap">SUCCESS RATE OVER [N] TRIALS PER CELL · &#8593; HIGHER IS BETTER</p>
+    <div class="base"><span>[talk title]</span><span>R4</span></div>
+  </section>
+
+</div>
+
+</body></html>

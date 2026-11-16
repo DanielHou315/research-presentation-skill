@@ -1,0 +1,1011 @@
+{
+  "_note": "Exact values read from each template's example.html (open-design commit 0701042f, 2026-11-16). pt = px / 2 on a 1920x1080 slide (13.33x7.5in). Fluid templates size in CSS px against a 1920x1080 window. Policy: every size is kept as shipped. The flags are information for the user and for porting, not instructions to resize.",
+  "themes": [
+    {
+      "id": "tech-sharing",
+      "name": "Tech Sharing",
+      "od_slug": "example-html-ppt-tech-sharing",
+      "page": "https://open-design.ai/plugins/example-html-ppt-tech-sharing/",
+      "author": "lewislulu (html-ppt-skill, MIT); amber restyle by OpenDesign (Apache-2.0)",
+      "licence": "MIT + Apache-2.0",
+      "stance": "Amber-phosphor terminal deck: warm off-black, one CRT-amber accent, IBM Plex Mono structure, hairline panels, sharp corners, no gradients or shadows.",
+      "canvas": "Fluid: each slide is 100vw x 100vh, padding 72px 96px; static preview (slides stacked, no runtime). Upstream runtime adds keyboard nav, S presenter popup, N notes, O overview.",
+      "fonts": [
+        {
+          "family": "Sora",
+          "weights": "500 600 700",
+          "role": "display (h1, h2, h4, agenda titles)"
+        },
+        {
+          "family": "IBM Plex Sans",
+          "weights": "400 500 700",
+          "role": "body"
+        },
+        {
+          "family": "IBM Plex Mono",
+          "weights": "400 500 600, italic 400",
+          "role": "kickers, terminal, tags, footer"
+        }
+      ],
+      "scale": [
+        [
+          "h1 title",
+          "Sora",
+          "700",
+          76,
+          "line-height 1.06, tracking -0.02em"
+        ],
+        [
+          "h2 title",
+          "Sora",
+          "600",
+          50,
+          "line-height 1.14, tracking -0.015em"
+        ],
+        [
+          "h3",
+          "IBM Plex Sans",
+          "600",
+          30,
+          "line-height 1.25"
+        ],
+        [
+          "agenda row title",
+          "Sora",
+          "600",
+          23,
+          "tracking -0.01em"
+        ],
+        [
+          "lede",
+          "IBM Plex Sans",
+          "400",
+          21,
+          "line-height 1.6, max 62ch, text-2"
+        ],
+        [
+          "h4 card title",
+          "Sora",
+          "600",
+          20,
+          "line-height 1.35"
+        ],
+        [
+          "card body",
+          "IBM Plex Sans",
+          "400",
+          15.5,
+          "line-height 1.7"
+        ],
+        [
+          "terminal code",
+          "IBM Plex Mono",
+          "400",
+          15,
+          "line-height 1.7"
+        ],
+        [
+          "kicker",
+          "IBM Plex Mono",
+          "500",
+          13,
+          "accent, prefixed with '> '"
+        ],
+        [
+          "tag",
+          "IBM Plex Mono",
+          "400",
+          12.5,
+          "hairline outline"
+        ],
+        [
+          "footer / page no.",
+          "IBM Plex Mono",
+          "400",
+          12,
+          "text-3"
+        ]
+      ],
+      "colors": [
+        [
+          "--bg",
+          "#151210",
+          "slide background"
+        ],
+        [
+          "--surface",
+          "#1c1814",
+          "terminal title bar, avatar"
+        ],
+        [
+          "--text-1",
+          "#ece7df",
+          "primary text"
+        ],
+        [
+          "--text-2",
+          "#a89f91",
+          "lede, card body"
+        ],
+        [
+          "--text-3",
+          "#8d8476",
+          "captions, footer"
+        ],
+        [
+          "--accent",
+          "#e8973c",
+          "CRT amber: kickers, highlights, one tick per slide"
+        ],
+        [
+          "--accent-deep",
+          "#a85d14",
+          "hot-card border, accent on paper"
+        ],
+        [
+          "--paper",
+          "#f1ece3",
+          "the single inverted closing slide"
+        ],
+        [
+          "--paper-ink",
+          "#1c1814",
+          "text on paper"
+        ],
+        [
+          "--line",
+          "rgba(236,231,223,.14)",
+          "hairlines"
+        ]
+      ],
+      "devices": [
+        "Terminal gutter: 1px vertical hairline at left:56px with a 9px amber tick at top:72px on every slide",
+        "Mono kicker with '> ' prefix above each title (e.g. 'agenda.toml', '// why-now')",
+        "Hairline cards, radius 0, no shadow; one 'hot' card per row with amber top border and 5% amber fill",
+        "Terminal window: 9px dots (first one amber), file name in the bar, warm syntax (kw amber, str sand, cmt dim italic)",
+        "Agenda rows: mono number, Sora title, mono duration on the right, hairline rules",
+        "One deliberate inversion: closing slide on paper with a large '>_' glyph"
+      ],
+      "layouts": [
+        "cover with speaker block",
+        "agenda rows",
+        "3-card context row",
+        "text + terminal split",
+        "text + checklist card",
+        "full-width code",
+        "3 takeaway cards",
+        "inverted Q&A close"
+      ],
+      "motion": "kf-rise: opacity 0 + translateY(24px) to rest, 0.6-0.7s cubic-bezier(.16,1,.3,1); kicker, then title (+0.06s), then body (+0.14s). Reduced motion: none.",
+      "research_fit": "Good for systems / robotics-software talks and code walkthroughs. Gaps: no figure or plot layout, no maths, dark background for papers' white figures. Body text is web-sized (see flags).",
+      "flags": [
+        "Card body 15.5px, terminal 15px, kicker 13px, tags and footer 12-12.5px, and lede 21px (10.5pt) are small for large rooms.",
+        "Dark background: paper figures with white backgrounds need re-export with transparent backgrounds."
+      ],
+      "demo_markers": [
+        "OpenDesign",
+        "Staff Developer-Advocate",
+        "agent-stream",
+        "Platform DevEx",
+        "devrel"
+      ]
+    },
+    {
+      "id": "product-launch",
+      "name": "Product Launch",
+      "od_slug": "example-html-ppt-product-launch",
+      "page": "https://open-design.ai/plugins/example-html-ppt-product-launch/",
+      "author": "lewislulu (html-ppt-skill, MIT); editorial restyle by OpenDesign (Apache-2.0)",
+      "licence": "MIT + Apache-2.0",
+      "stance": "Warm editorial launch keynote: one burnt-orange accent, warm off-white paper, warm off-black ink, Fraunces variable serif with optical sizing, hairline ledgers.",
+      "canvas": "Fluid: 100vw x 100vh slides, padding 88px 104px; headline sizes use clamp() against viewport width; static preview.",
+      "fonts": [
+        {
+          "family": "Fraunces",
+          "weights": "400-600 variable, opsz 9-144, italic",
+          "role": "display, numerals, quotes"
+        },
+        {
+          "family": "Outfit",
+          "weights": "300 400 500 600",
+          "role": "body"
+        },
+        {
+          "family": "JetBrains Mono",
+          "weights": "400 500",
+          "role": "kickers, footer, units"
+        }
+      ],
+      "scale": [
+        [
+          "intro nameplate h1",
+          "Fraunces",
+          "560 opsz 110",
+          168,
+          "clamp(110px,12.5vw,168px), line-height 1"
+        ],
+        [
+          "h1",
+          "Fraunces",
+          "560 opsz 110",
+          104,
+          "clamp(64px,7.6vw,104px), line-height 1.02, tracking -0.018em"
+        ],
+        [
+          "closing big number",
+          "Fraunces",
+          "560 opsz 110",
+          118,
+          "clamp(80px,8vw,118px), accent-bright"
+        ],
+        [
+          "price amount",
+          "Fraunces",
+          "560 opsz 90",
+          76,
+          "clamp(54px,5.4vw,76px), tracking -0.025em"
+        ],
+        [
+          "h2",
+          "Fraunces",
+          "540 opsz 90",
+          62,
+          "clamp(42px,4.8vw,62px), line-height 1.06"
+        ],
+        [
+          "column stat",
+          "Fraunces",
+          "540 opsz 80",
+          54,
+          "clamp(40px,3.8vw,54px)"
+        ],
+        [
+          "pull quote",
+          "Fraunces italic",
+          "480 opsz 80",
+          42,
+          "clamp(30px,3.3vw,42px), max 26ch"
+        ],
+        [
+          "step numeral",
+          "Fraunces italic",
+          "500 opsz 60",
+          38,
+          "accent"
+        ],
+        [
+          "lede",
+          "Outfit",
+          "300",
+          20,
+          "line-height 1.55, max 56ch, ink-2"
+        ],
+        [
+          "h4",
+          "Outfit",
+          "600",
+          20,
+          "tracking -0.01em"
+        ],
+        [
+          "body (dim)",
+          "Outfit",
+          "400",
+          15.5,
+          "line-height 1.6, max 44ch"
+        ],
+        [
+          "kicker",
+          "JetBrains Mono",
+          "500",
+          12,
+          "uppercase, tracking 0.15em, accent"
+        ],
+        [
+          "footer",
+          "JetBrains Mono",
+          "400",
+          11.5,
+          "tracking 0.04em, ink-3"
+        ]
+      ],
+      "colors": [
+        [
+          "--paper",
+          "#f7f3ec",
+          "slide background"
+        ],
+        [
+          "--paper-2",
+          "#efe9df",
+          "secondary paper"
+        ],
+        [
+          "--ink",
+          "#191511",
+          "primary text; background of the one inverted slide"
+        ],
+        [
+          "--ink-2",
+          "#544c44",
+          "lede, body"
+        ],
+        [
+          "--ink-3",
+          "#6e6459",
+          "footer, labels"
+        ],
+        [
+          "--accent",
+          "#a63e0c",
+          "burnt orange: kicker, rule, italic emphasis, proposed column"
+        ],
+        [
+          "--accent-bright",
+          "#d9651f",
+          "accent on ink"
+        ],
+        [
+          "--line",
+          "rgba(25,21,17,.13)",
+          "hairlines"
+        ]
+      ],
+      "devices": [
+        "Cover anchored to the bottom: mono kicker, 72x3px accent rule, three-line serif headline whose last line is italic accent",
+        "Centred nameplate slide framed by two strong hairlines",
+        "Hairline column grids (3-up / 2-up) with a glyph or serif stat on top of each column",
+        "Ledger rows with italic serif step numerals in accent",
+        "Pricing ledger: three columns, proposed column gets a 3px accent top bar",
+        "One inverted ink slide for the close: italic pull quote + huge accent number + button",
+        "Mono footer baseline: audience on the left, 'n / total' on the right"
+      ],
+      "layouts": [
+        "bottom-anchored cover",
+        "centred nameplate",
+        "3-column pillars",
+        "3-column stats",
+        "2-column proof",
+        "4-step ledger",
+        "3-plan pricing ledger",
+        "inverted quote + CTA"
+      ],
+      "motion": "rise: translateY(24px) + fade, 0.7s cubic-bezier(.16,1,.3,1), children staggered 0.06s.",
+      "research_fit": "Best match for job talks, invited talks and openings where the narrative matters. Gaps: no figure, video or maths layout; body text web-sized.",
+      "flags": [
+        "Body 15.5px, kicker 12px, footer 11.5px and lede 20px are small for large rooms.",
+        "Headline sizes use clamp() on viewport width, so they shrink in small windows; when porting to a fixed canvas, use the 1920px value (the clamp maximum)."
+      ],
+      "demo_markers": [
+        "OpenDesign",
+        "Northwind",
+        "Priya Shah",
+        "Marcus Webb",
+        "open-design.ai"
+      ]
+    },
+    {
+      "id": "cyber-terminal",
+      "name": "Cyber Terminal (hermes)",
+      "od_slug": "example-html-ppt-hermes-cyber-terminal",
+      "page": "https://open-design.ai/plugins/example-html-ppt-hermes-cyber-terminal/",
+      "author": "lewislulu (html-ppt-skill, MIT); repointed tokens by OpenDesign (Apache-2.0)",
+      "licence": "MIT + Apache-2.0",
+      "stance": "Dark terminal with neon mint/cyan, scanlines, masked grid and vignette; everything reads like a live shell session.",
+      "canvas": "Fluid: 100vw x 100vh slides, padding 60px 84px; static preview; upstream runtime has presenter view and notes.",
+      "fonts": [
+        {
+          "family": "JetBrains Mono",
+          "weights": "400 500 700",
+          "role": "display, headings, labels, code (the deck's voice)"
+        },
+        {
+          "family": "Geist",
+          "weights": "300 400 500",
+          "role": "lede and card descriptions"
+        }
+      ],
+      "scale": [
+        [
+          "big stat",
+          "JetBrains Mono",
+          "700",
+          140,
+          "tracking -0.04em, mint glow"
+        ],
+        [
+          "cover / divider h1",
+          "JetBrains Mono",
+          "700",
+          110,
+          "96-120px inline overrides, mint, glow text-shadow"
+        ],
+        [
+          "h1",
+          "JetBrains Mono",
+          "700",
+          72,
+          "line-height 1.05, tracking -0.02em"
+        ],
+        [
+          "h2",
+          "JetBrains Mono",
+          "600",
+          46,
+          "tracking -0.015em"
+        ],
+        [
+          "h3",
+          "JetBrains Mono",
+          "600",
+          22,
+          "amber"
+        ],
+        [
+          "card value",
+          "JetBrains Mono",
+          "700",
+          22,
+          "mint"
+        ],
+        [
+          "lede",
+          "Geist",
+          "300",
+          18,
+          "line-height 1.7, max 62ch"
+        ],
+        [
+          "code box",
+          "JetBrains Mono",
+          "400",
+          14,
+          "line-height 1.85"
+        ],
+        [
+          "card description",
+          "Geist",
+          "400",
+          13,
+          "line-height 1.6"
+        ],
+        [
+          "window chrome",
+          "JetBrains Mono",
+          "400",
+          11,
+          "uppercase, tracking 0.18em"
+        ],
+        [
+          "tag",
+          "JetBrains Mono",
+          "400",
+          11,
+          "uppercase, tracking 0.1em, outlined"
+        ],
+        [
+          "card label / footer",
+          "JetBrains Mono",
+          "400",
+          10,
+          "uppercase, tracking 0.2-0.22em"
+        ]
+      ],
+      "colors": [
+        [
+          "--hc-bg",
+          "#0a0c10",
+          "background"
+        ],
+        [
+          "--hc-surface",
+          "#12141a",
+          "cards"
+        ],
+        [
+          "--hc-ink",
+          "#e4e2d8",
+          "primary text"
+        ],
+        [
+          "--hc-ink2",
+          "#96949d",
+          "labels, footer"
+        ],
+        [
+          "--hc-green",
+          "#7ed3a4",
+          "mint: prompt, h1, values, primary accent"
+        ],
+        [
+          "--hc-cyan",
+          "#64dfdf",
+          "'$' prompt glyph, function names"
+        ],
+        [
+          "--hc-amber",
+          "#e9c58a",
+          "h3, keywords, warnings"
+        ],
+        [
+          "--hc-rose",
+          "#d4a0b9",
+          "variables"
+        ],
+        [
+          "--hc-red",
+          "#ff6b6b",
+          "negative tags"
+        ]
+      ],
+      "devices": [
+        "Window chrome row: three traffic-light dots + shell path ('~/session · zsh · 118x42')",
+        "'$ command' prompt line above every title; blinking block cursor after the cover title",
+        "Background stack: 56px grid with radial mask, 4px scanlines (screen blend), vignette",
+        "HUD cards: 2px corner brackets top-left (mint) and bottom-right (dim), radius 2px",
+        "Code box with syntax colours (comment grey, keyword amber, string mint, function cyan, var rose)",
+        "Uppercase outlined tags (mint / amber / red)",
+        "Footer rule with uppercase micro-labels and 'NN / 08'"
+      ],
+      "layouts": [
+        "cover with prompt + cursor",
+        "section divider '// Why Now'",
+        "3+2 spec-card grid",
+        "command + code trace",
+        "SVG bar chart",
+        "big stat + 2 cards",
+        "install CTA with code",
+        "'// thanks' close"
+      ],
+      "motion": "hcRise: translateY(18px) + fade, 0.6s cubic-bezier(.16,1,.3,1), staggered 0.06s; cursor blink steps(2) 1s. Reduced motion disables both.",
+      "research_fit": "Fits robotics-software / systems demos in dark rooms. Gaps: glow and scanlines hurt projector legibility, no figure or maths layout, smallest labels 10px.",
+      "flags": [
+        "Card labels and footer 10px, chrome and tags 11px, card text 13px, code 14px, lede 18px: all below 24px (12pt).",
+        "Glow text-shadow, scanlines and vignette reduce legibility on projectors; tell the user if the room is large."
+      ],
+      "demo_markers": [
+        "OpenDesign",
+        "BYOK",
+        "od model",
+        "nexu-io",
+        "discord.gg"
+      ]
+    },
+    {
+      "id": "pentagram-grid",
+      "name": "Pentagram Grid",
+      "od_slug": "example-huashu-pentagram-grid",
+      "page": "https://open-design.ai/plugins/example-huashu-pentagram-grid/",
+      "author": "alchaincyf / huashu-design ppt-pentagram (MIT), extended to a deck by OpenDesign",
+      "licence": "MIT (+ Apache-2.0 for OpenDesign changes)",
+      "stance": "Swiss info-architecture: white paper with black bookends, one red (#E63946) exactly where the eye must land, giant weight-900 numerals, measured grid.",
+      "canvas": "Fixed 1920x1080 #stage scaled by fit(); every measurement in px; 80px outer margins; 64px chrome bars.",
+      "fonts": [
+        {
+          "family": "Helvetica Neue (system stack)",
+          "weights": "400 500 600 700 900",
+          "role": "the only family; no web fonts; falls back to Arial on Windows"
+        }
+      ],
+      "scale": [
+        [
+          "hero numeral",
+          "Helvetica Neue",
+          "900",
+          260,
+          "line-height 0.85, tracking -13px; red decimal/unit"
+        ],
+        [
+          "divider chapter number",
+          "Helvetica Neue",
+          "900",
+          260,
+          "fully red on dark pages"
+        ],
+        [
+          "stats-grid numeral",
+          "Helvetica Neue",
+          "900",
+          128,
+          "tracking -6px"
+        ],
+        [
+          "cover / closing headline",
+          "Helvetica Neue",
+          "900",
+          120,
+          "tracking -5px, red full stop"
+        ],
+        [
+          "timeline numeral",
+          "Helvetica Neue",
+          "900",
+          96,
+          "graded grey to black to red"
+        ],
+        [
+          "divider title",
+          "Helvetica Neue",
+          "900",
+          84,
+          "tracking -3px"
+        ],
+        [
+          "bench hero",
+          "Helvetica Neue",
+          "900",
+          80,
+          "tracking -3px"
+        ],
+        [
+          "contents headline",
+          "Helvetica Neue",
+          "900",
+          72,
+          "tracking -3px"
+        ],
+        [
+          "section headline",
+          "Helvetica Neue",
+          "900",
+          64,
+          "tracking -2px"
+        ],
+        [
+          "quote",
+          "Helvetica Neue",
+          "900",
+          54,
+          "line-height 1.4, key phrase red"
+        ],
+        [
+          "summary number",
+          "Helvetica Neue",
+          "900",
+          32,
+          "tracking -1px"
+        ],
+        [
+          "contents row",
+          "Helvetica Neue",
+          "700",
+          28,
+          ""
+        ],
+        [
+          "body / key message",
+          "Helvetica Neue",
+          "400",
+          17,
+          "15-18px, line-height 1.7, #666"
+        ],
+        [
+          "bar value",
+          "Helvetica Neue",
+          "700",
+          15,
+          "inside the bar"
+        ],
+        [
+          "bar label / kicker",
+          "Helvetica Neue",
+          "600-900",
+          13,
+          ""
+        ],
+        [
+          "labels / chrome",
+          "Helvetica Neue",
+          "700",
+          11,
+          "11-12px uppercase, tracking 2-3px"
+        ]
+      ],
+      "colors": [
+        [
+          "--paper",
+          "#FFFFFF",
+          "light pages"
+        ],
+        [
+          "--night",
+          "#111111",
+          "dark pages, 64px chrome bars"
+        ],
+        [
+          "--ink",
+          "#111111",
+          "text on light"
+        ],
+        [
+          "--accent",
+          "#E63946",
+          "the only red; at most 4 touches per page"
+        ],
+        [
+          "--grid",
+          "#E8E8E8",
+          "hairlines"
+        ],
+        [
+          "--track",
+          "#F5F5F5",
+          "bar track"
+        ],
+        [
+          "--bar-base",
+          "#E0E0E0",
+          "losing / baseline bar"
+        ],
+        [
+          "--muted",
+          "#999999",
+          "labels"
+        ],
+        [
+          "--muted-2",
+          "#666666",
+          "body copy"
+        ],
+        [
+          "--faint",
+          "#BBBBBB",
+          "tertiary captions"
+        ],
+        [
+          "--night-line",
+          "#333333",
+          "hairlines on dark"
+        ],
+        [
+          "--night-mut",
+          "#888888",
+          "secondary text on dark"
+        ]
+      ],
+      "devices": [
+        "64px black chrome bars top and bottom: uppercase label with a red '/', red right label, 900-weight logotype + divider + footnote",
+        "Swiss grid hairlines: 1px verticals and horizontals at 5% opacity on the 80px gutters",
+        "One giant 900-weight numeral per hero page; only its decimal point, slash or unit is red",
+        "Red / black / grey bar charts: the subject is always the red bar, value printed inside",
+        "Summary strip: hairline-topped row of 32px numbers with uppercase captions",
+        "Outlined red badge, square corners; zero border-radius everywhere",
+        "White pages dominate; at most 2-3 dark pages (divider, closing)"
+      ],
+      "layouts": [
+        "cover (statement + hero numeral)",
+        "contents rows",
+        "big-number + stat rail",
+        "data-theater (3 bar-chart columns + summary)",
+        "dark divider",
+        "before/after bars",
+        "timeline",
+        "quote",
+        "2x2 stats grid",
+        "dark closing"
+      ],
+      "motion": "Opacity-only page fade 0.45s cubic-bezier(.16,1,.3,1); nothing else moves.",
+      "research_fit": "Strongest for results-heavy talks: the red-bar convention maps directly to 'ours vs baselines'. Gaps: body and labels are very small for projection, Helvetica Neue isn't free to ship, no figure-image or maths layout.",
+      "flags": [
+        "Body 15-18px and labels 11-13px sit on a fixed 1920 canvas, so they project at 5.5-9pt, well below the 18-24pt talk advice asks for.",
+        "Contrast: --muted #999 on white is 2.85:1 and --faint #BBB is 1.92:1 (both fail 4.5:1); small red text #E63946 on white is 4.17:1 (fails below large-text size; the seed uses red mostly on large numerals and bars).",
+        "Helvetica Neue is a licensed system font, not shipped; on Windows/Linux it falls back to Arial."
+      ],
+      "demo_markers": [
+        "OPENDESIGN",
+        "OpenDesign",
+        "Positioning",
+        "析衡",
+        "XIHENG"
+      ]
+    },
+    {
+      "id": "notebook-tabs",
+      "name": "Notebook Tabs",
+      "od_slug": "example-fs-notebook-tabs",
+      "page": "https://open-design.ai/plugins/example-fs-notebook-tabs/",
+      "author": "Zara Zhang (frontend-slides, MIT)",
+      "licence": "MIT",
+      "stance": "A physical notebook: cream paper card on a dark desk, binder holes, pink margin rule, five pastel index tabs on the fore-edge marking the current section.",
+      "canvas": "Fixed 1920x1080 .deck-stage scaled uniformly; paper inset 56/150/56/120px; content padding 78px 110px (150px left).",
+      "fonts": [
+        {
+          "family": "Bodoni Moda",
+          "weights": "400 700, italic 400",
+          "role": "display, headings, numerals, quotes"
+        },
+        {
+          "family": "DM Sans",
+          "weights": "400 500 700",
+          "role": "body, labels, tabs, chrome"
+        }
+      ],
+      "scale": [
+        [
+          "section numeral (outlined)",
+          "Bodoni Moda",
+          "400",
+          430,
+          "line-height 0.85, 2px stroke, transparent fill"
+        ],
+        [
+          "big stat",
+          "Bodoni Moda",
+          "700",
+          300,
+          "unit below in 120px italic"
+        ],
+        [
+          "quote mark",
+          "Bodoni Moda",
+          "400",
+          220,
+          "lavender"
+        ],
+        [
+          "display title",
+          "Bodoni Moda",
+          "700",
+          150,
+          "line-height 0.98; one italic 400 word"
+        ],
+        [
+          "h2",
+          "Bodoni Moda",
+          "700",
+          84,
+          "line-height 1.04; 58-64px on dense slides"
+        ],
+        [
+          "quote",
+          "Bodoni Moda italic",
+          "400",
+          66,
+          "line-height 1.25"
+        ],
+        [
+          "contents title",
+          "Bodoni Moda",
+          "400",
+          40,
+          ""
+        ],
+        [
+          "point / card heading",
+          "Bodoni Moda",
+          "700",
+          36,
+          "32-40px"
+        ],
+        [
+          "cover edition line",
+          "Bodoni Moda italic",
+          "400",
+          34,
+          ""
+        ],
+        [
+          "subtitle / lede",
+          "DM Sans",
+          "400",
+          30,
+          "line-height 1.5, max 980px"
+        ],
+        [
+          "body",
+          "DM Sans",
+          "400",
+          26,
+          "line-height 1.5; list items 25px, card body 23px"
+        ],
+        [
+          "bar label / links",
+          "DM Sans",
+          "400",
+          20,
+          "uppercase, tracking 0.1-0.2em"
+        ],
+        [
+          "label / kicker / tabs",
+          "DM Sans",
+          "700",
+          17,
+          "uppercase, tracking 0.26-0.3em"
+        ],
+        [
+          "baseline footer",
+          "DM Sans",
+          "400",
+          15,
+          "uppercase, tracking 0.24em"
+        ]
+      ],
+      "colors": [
+        [
+          "--bg-outer",
+          "#2d2d2d",
+          "dark desk behind the paper"
+        ],
+        [
+          "--bg-page",
+          "#f8f6f1",
+          "cream paper"
+        ],
+        [
+          "--text-primary",
+          "#1a1a1a",
+          "primary text"
+        ],
+        [
+          "--text-secondary",
+          "#6b6358",
+          "labels, lede, body"
+        ],
+        [
+          "--rule",
+          "#d8d2c4",
+          "hairlines, dotted leaders"
+        ],
+        [
+          "--tab-1",
+          "#98d4bb",
+          "mint tab (section 1)"
+        ],
+        [
+          "--tab-2",
+          "#c7b8ea",
+          "lavender tab"
+        ],
+        [
+          "--tab-3",
+          "#f4b8c5",
+          "pink tab, margin rule"
+        ],
+        [
+          "--tab-4",
+          "#a8d8ea",
+          "sky tab, 'hot' column shadow"
+        ],
+        [
+          "--tab-5",
+          "#ffe6a7",
+          "cream tab"
+        ]
+      ],
+      "devices": [
+        "Paper card with layered drop shadow and faint 44px ruled grain",
+        "Ten punched binder holes down the left margin; 1px pink margin rule at 92px",
+        "Five vertical index tabs on the right edge, tucked under the paper; current section's tab is pulled out",
+        "Running head 'No. NN' + section, and a baseline 'section / NN of total', both hairline-ruled",
+        "Outlined 430px Bodoni section numeral",
+        "Colour chips that tie kickers, contents rows and bars to their section's tab colour",
+        "Hard 8px offset shadow in sky blue on the 'this work' comparison column"
+      ],
+      "layouts": [
+        "cover",
+        "contents with dotted leaders",
+        "section divider",
+        "3 pinned points",
+        "quote",
+        "big stat + side note",
+        "CSS bar chart",
+        "two-column comparison",
+        "2x2 contribution grid",
+        "closing with limitations"
+      ],
+      "motion": "Reveal: translateY(28px) + fade, 0.7s cubic-bezier(.16,1,.3,1), staggered 0.1s; bars grow with scaleY 0.9s. Reduced motion: fades only.",
+      "research_fit": "Built for capstone and thesis defenses; the tab index works as a live agenda. Largest body text of the five. Gaps: playful tone for a conference, no figure-image, video or maths layout, max 3 points per slide.",
+      "flags": [
+        "Footer 15px and labels/tabs 17px are below 24px (12pt); body 26px (13pt) and lede 30px (15pt) pass the Slides floor but are under the 18-24pt that talk advice asks for.",
+        "Max 3 points per slide is a template rule."
+      ],
+      "demo_markers": [
+        "TypeAhead",
+        "Jordan Ames",
+        "Elena Cho",
+        "Gboard",
+        "SwiftKey"
+      ]
+    }
+  ]
+}

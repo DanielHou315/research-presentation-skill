@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[Talk title] — research layouts</title>
+<style>/* html-ppt :: tech-sharing webfonts (only families actually used) */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+</style>
+<style>/* tech-sharing :: amber-phosphor terminal deck
+ * Stance: warm off-black, single CRT-amber accent, IBM Plex Mono structure,
+ * hairline panels with sharp corners, no gradients, no decorative shadows.
+ */
+:root{
+  --bg:#151210;
+  --surface:#1c1814;
+  --line:rgba(236,231,223,.14);
+  --line-strong:rgba(236,231,223,.32);
+  --text-1:#ece7df;
+  --text-2:#a89f91;
+  --text-3:#8d8476; /* >=4.5:1 on --bg for 12-13px captions */
+  --accent:#e8973c;
+  --accent-deep:#a85d14;
+  --paper:#f1ece3;
+  --paper-ink:#1c1814;
+  --font-display:'Sora',-apple-system,BlinkMacSystemFont,sans-serif;
+  --font-sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+  --font-mono:'IBM Plex Mono',SFMono-Regular,Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text-1);
+  font-family:var(--font-sans);font-weight:400;line-height:1.65;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img,svg,video{max-width:100%;display:block}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+code,kbd,pre,samp{font-family:var(--font-mono)}
+
+/* ================= SLIDE SYSTEM (static preview: slides stacked) ================= */
+.deck{width:100vw;background:var(--bg)}
+.slide{position:relative;width:100vw;height:100vh;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:72px 96px;border-bottom:1px solid var(--line);
+  background:var(--bg);color:var(--text-1)}
+/* terminal gutter: hairline + tick, the deck's quiet signature */
+.slide::before{content:"";position:absolute;top:0;bottom:0;left:56px;width:1px;
+  background:var(--line);pointer-events:none}
+.slide::after{content:"";position:absolute;top:72px;left:52px;width:9px;height:1px;
+  background:var(--accent);pointer-events:none}
+
+/* ================= TYPOGRAPHY ================= */
+.kicker{font-family:var(--font-mono);font-size:13px;font-weight:500;color:var(--accent);
+  letter-spacing:.02em;margin:0 0 18px}
+.kicker::before{content:"> "}
+h1.title,.h1{font-family:var(--font-display);font-size:76px;line-height:1.06;font-weight:700;
+  letter-spacing:-.02em;margin:0 0 18px;color:var(--text-1)}
+h2.title,.h2{font-family:var(--font-display);font-size:50px;line-height:1.14;font-weight:600;
+  letter-spacing:-.015em;margin:0 0 14px;color:var(--text-1)}
+h3,.h3{font-size:30px;line-height:1.25;font-weight:600;margin:0 0 10px;color:var(--text-1)}
+h4,.h4{font-family:var(--font-display);font-size:20px;line-height:1.35;font-weight:600;margin:0 0 8px;color:var(--text-1)}
+.lede{font-size:21px;line-height:1.6;color:var(--text-2);font-weight:400;max-width:62ch;margin:0}
+.dim{color:var(--text-2)}
+.dim2{color:var(--text-3)}
+.mono{font-family:var(--font-mono)}
+.ac{color:var(--accent)}
+
+/* ================= LAYOUT PRIMITIVES ================= */
+.stack>*+*{margin-top:14px}
+.row{display:flex;gap:24px;align-items:center}
+.grid{display:grid;gap:28px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.center{display:flex;align-items:center;justify-content:center;text-align:center}
+.mt-s{margin-top:8px}.mt-m{margin-top:18px}.mt-l{margin-top:36px}
+.tc{text-align:center}
+
+/* ================= PANELS (hairline, sharp corners, no shadows) ================= */
+.card{background:transparent;border:1px solid var(--line);border-radius:0;padding:26px 28px}
+.card-accent{border-top:1px solid var(--accent)}
+/* resolution panel: the one card allowed extra weight (problem/problem/answer rhythm) */
+.card-hot{border-color:var(--accent-deep);border-top-color:var(--accent);background:rgba(232,151,60,.05)}
+.card-hot h4{color:var(--accent)}
+.card p{margin:10px 0 0;font-size:15.5px;line-height:1.7}
+
+.tag{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;
+  font-family:var(--font-mono);font-size:12.5px;color:var(--text-2);
+  border:1px solid var(--line);border-radius:0;background:transparent}
+
+/* ================= AGENDA ================= */
+.agenda-row{display:flex;align-items:baseline;gap:28px;padding:19px 0;
+  border-bottom:1px solid var(--line);font-family:var(--font-mono)}
+.agenda-row:first-child{border-top:1px solid var(--line-strong)}
+.agenda-row .num{color:var(--accent);flex:none;width:48px;font-size:14px}
+.agenda-row .t{color:var(--text-1);font-size:23px;flex:1;font-family:var(--font-display);font-weight:600;letter-spacing:-.01em}
+.agenda-row .d{color:var(--text-3);font-size:13px}
+
+/* ================= TERMINAL (family signature, kept) ================= */
+.terminal{background:#100d0a;border:1px solid var(--line);border-radius:0;overflow:hidden;
+  font-family:var(--font-mono);font-size:15px;line-height:1.7}
+.terminal .bar{display:flex;align-items:center;gap:8px;padding:11px 16px;background:var(--surface);
+  border-bottom:1px solid var(--line);font-size:12px;color:var(--text-3)}
+.terminal .dot{width:9px;height:9px;border-radius:50%;background:#3c362e}
+.terminal .dot:first-child{background:var(--accent)}
+.terminal pre{margin:0;padding:24px 28px;color:var(--text-1);overflow:auto;max-height:440px}
+/* restrained warm syntax: amber + sand on off-black, no rainbow */
+.kw{color:var(--accent)}
+.fn{color:#f3efe7}
+.str{color:#c9b896}
+.cmt{color:var(--text-3);font-style:italic}
+.terminal .num,pre .num{color:#efc98b}
+
+/* ================= SPEAKER ================= */
+.speaker{display:flex;align-items:center;gap:16px;margin-top:32px}
+.speaker .av{width:46px;height:46px;flex:none;background:var(--surface);
+  border:1px solid var(--line-strong);position:relative}
+.speaker .av::after{content:"";position:absolute;left:12px;top:13px;width:11px;height:20px;
+  background:var(--accent)}
+.speaker b{display:block;color:var(--text-1);font-size:17px;font-weight:600}
+.speaker span{color:var(--text-3);font-size:13px;font-family:var(--font-mono)}
+
+/* ================= CHROME ================= */
+.deck-footer{position:absolute;bottom:28px;left:96px;right:96px;display:flex;align-items:baseline;
+  justify-content:space-between;font-size:12px;color:var(--text-3);font-family:var(--font-mono);
+  z-index:10;pointer-events:none}
+.slide-number::before{content:attr(data-current)}
+.slide-number::after{content:" / " attr(data-total)}
+
+/* ================= INVERSION (single deliberate flip: closing slide) ================= */
+.slide.invert{background:var(--paper);color:var(--paper-ink)}
+.slide.invert::before{background:rgba(28,24,20,.16)}
+.slide.invert::after{background:var(--accent-deep)}
+.slide.invert .h2{color:var(--paper-ink)}
+.slide.invert .lede{color:rgba(28,24,20,.72)}
+.slide.invert .tag{color:rgba(28,24,20,.7);border-color:rgba(28,24,20,.28)}
+.slide.invert .glyph{color:var(--accent-deep)}
+
+/* ================= MOTION (transform+opacity only, ease-out, staggered) ================= */
+@keyframes kf-rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.anim-fade-up{animation:kf-rise .7s var(--ease) both}
+.slide>.kicker{animation:kf-rise .6s var(--ease) both}
+.slide>.h1,.slide>.h2{animation:kf-rise .7s var(--ease) both;animation-delay:.06s}
+.slide>.lede,.slide>.stack,.slide>.grid,.slide>.terminal,.slide>.speaker{
+  animation:kf-rise .7s var(--ease) both;animation-delay:.14s}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+
+/* ================= UTILITY / PRINT ================= */
+.hidden{display:none!important}
+.notes{display:none!important}
+@media print{
+  .slide{page-break-after:always}
+}
+</style>
+<style id="research-layouts">
+/* === research layouts: tokens and px sizes from this theme only === */
+.rl-fig{border:1px solid var(--line);padding:26px 28px;background:transparent}
+.rl-plot text{font-family:var(--font-mono)}
+.rl-cap{font-family:var(--font-mono);font-size:12px;color:var(--text-3);margin-top:12px}
+.rl-frame{position:relative;background:#100d0a;height:520px}
+.rl-poster{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:15px;color:var(--text-3)}
+.rl-tags{position:absolute;left:16px;bottom:16px;display:flex;gap:8px}
+.rl-tags .tag{background:var(--bg)}
+.rl-math{font-family:var(--font-sans);font-size:50px;color:var(--text-1);margin:36px 0}
+.rl-term-a{color:var(--accent)}
+.rl-table{border-collapse:collapse;width:100%;font-size:21px;margin-top:36px}
+.rl-table th{font-family:var(--font-mono);font-size:13px;font-weight:500;color:var(--accent);text-align:left;padding:0 24px 12px 0;border-bottom:1px solid var(--line)}
+.rl-table td{padding:14px 24px 14px 0;border-bottom:1px solid var(--line);color:var(--text-2)}
+.rl-table thead tr{border-top:1px solid var(--line-strong)}
+.rl-table tbody tr:last-child td{border-bottom:1px solid var(--line-strong)}
+.rl-table td+td{font-family:var(--font-mono)}
+.rl-table .rl-best td{color:var(--text-1);font-weight:600}
+.rl-table .rl-best td+td{color:var(--accent)}
+</style>
+</head>
+<body class="tpl-tech-sharing">
+<!-- research layouts for this theme: figure, robot video, equation, results table.
+     <head> and navigation script are the seed's, verbatim (see example.html, LICENSE).
+     Added CSS (#research-layouts) uses only this theme's tokens and px sizes.
+     Bracketed text is placeholder content: replace it all. -->
+<div class="deck">
+
+  <!-- R1. Figure -->
+  <section class="slide" data-title="Figure">
+    <p class="kicker">results/fig-3.svg</p>
+    <h2 class="h2">[Method] holds [metric] as [condition] grows; [Baseline A] does not.</h2>
+    <div class="grid g2 mt-l" style="grid-template-columns:1.45fr 1fr;align-items:start">
+      <div><div class="rl-fig"><svg class="rl-plot" width="980" height="470" viewBox="0 0 980 470" role="img" aria-label="Placeholder plot: replace with your figure" font-family="IBM Plex Mono">
+  <line x1="70" y1="410" x2="790" y2="410" stroke="rgba(236,231,223,.32)" stroke-width="1.5"/>
+  <line x1="70" y1="30" x2="70" y2="410" stroke="rgba(236,231,223,.32)" stroke-width="1.5"/>
+  <polyline points="70,159 160,187 250,214 340,242 430,269 520,297 610,324 700,352 790,380" fill="none" stroke="#8d8476" stroke-width="2.5" stroke-dasharray="8 6"/>
+  <polyline points="70,76 160,110 250,144 340,178 430,212 520,247 610,281 700,315 790,349" fill="none" stroke="#a89f91" stroke-width="2.5"/>
+  <polyline points="70,60 160,62 250,66 340,72 430,81 520,93 610,107 700,124 790,144" fill="none" stroke="#e8973c" stroke-width="4"/>
+  <text x="806" y="149" font-size="15" font-weight="700" fill="#e8973c">[Ours]</text>
+  <text x="806" y="354" font-size="15" fill="#a89f91">[Baseline A]</text>
+  <text x="806" y="385" font-size="15" fill="#a89f91">[Baseline B]</text>
+  <text x="430" y="456" font-size="13" text-anchor="middle" fill="#a89f91">[condition, unit] &#8594;</text>
+  <text x="22" y="220" font-size="13" text-anchor="middle" fill="#a89f91" transform="rotate(-90 22 220)">[metric] &#8593; better</text>
+</svg></div><p class="rl-cap">Fig. 3 · [metric] vs [condition] · n = [N] trials per point · error bars: [95% CI]</p></div>
+      <div class="stack"><p class="lede">[One sentence on what to look at: where the curves separate and why it matters.]</p>
+        <div><span class="tag">higher is better</span> <span class="tag">[N] seeds</span></div></div>
+    </div>
+    <div class="deck-footer"><span class="mono">[talk title]</span><span class="slide-number" data-current="R1" data-total="R4"></span></div>
+  </section>
+
+  <!-- R2. Robot video -->
+  <section class="slide" data-title="Video">
+    <p class="kicker">rollouts/trial-07.mp4</p>
+    <h2 class="h2">[The policy regrasps after an unseen push.]</h2>
+    <div class="terminal mt-m">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span>trial-07.mp4 · [robot, task]</span></div>
+      <div class="rl-frame"><!-- Replace the poster div with your clip: <video class="rl-video" src="clip.mp4" poster="poster.jpg" muted loop playsinline></video> Keep the on-frame tags: speed, control mode, external aids, trial count. --><div class="rl-poster">[poster frame of the clip]</div>
+        <div class="rl-tags"><span class="tag">[4]&#215; speed</span><span class="tag">autonomous</span><span class="tag">no mocap</span><span class="tag">trial [7] / [10] &#10003;</span></div></div>
+    </div>
+  </section>
+
+  <!-- R3. Equation -->
+  <section class="slide" data-title="Equation">
+    <p class="kicker">method/objective</p>
+    <h2 class="h2">[One loss trains denoising and contact prediction together.]</h2>
+    <math display="block" class="rl-math"><mrow>
+  <mi>&#8466;</mi><mo>=</mo>
+  <mrow class="rl-term-a"><mo>&#8214;</mo><mi>&#949;</mi><mo>&#8722;</mo><msub><mi>&#949;</mi><mi>&#952;</mi></msub><mo>(</mo><msub><mi>a</mi><mi>t</mi></msub><mo>,</mo><mi>t</mi><mo>)</mo><msup><mo>&#8214;</mo><mn>2</mn></msup></mrow>
+  <mo>+</mo><mi>&#955;</mi>
+  <mrow class="rl-term-b"><mi>BCE</mi><mo>(</mo><mi>c</mi><mo>,</mo><msub><mover><mi>c</mi><mo>^</mo></mover><mi>&#952;</mi></msub><mo>)</mo></mrow>
+</mrow></math>
+    <div class="grid g2">
+      <div class="card card-accent"><h4 class="ac">Denoising term</h4><p class="dim">[What it does, in one line. Define &#949;, &#949;<sub>&#952;</sub>, a<sub>t</sub>, t.]</p></div>
+      <div class="card"><h4>Contact term</h4><p class="dim">[What it does, in one line. Define c, &#265;<sub>&#952;</sub>, &#955;.]</p></div>
+    </div>
+  </section>
+
+  <!-- R4. Results table -->
+  <section class="slide" data-title="Results table">
+    <p class="kicker">results/table-1.csv</p>
+    <h2 class="h2">[Method] is best on [k] of [K] tasks.</h2>
+    <table class="rl-table"><thead><tr><th>Method</th><th>[Task 1] &#8593;</th><th>[Task 2] &#8593;</th><th>[Task 3] &#8593;</th></tr></thead><tbody><tr class="rl-best"><td>[Ours]</td><td>[0.00]</td><td>[0.00]</td><td>[0.00]</td></tr><tr class=""><td>[Baseline A]</td><td>[0.00]</td><td>[0.00]</td><td>[0.00]</td></tr><tr class=""><td>[Baseline B]</td><td>[0.00]</td><td>[0.00]</td><td>[0.00]</td></tr><tr class=""><td>[Ablation: no contact term]</td><td>[0.00]</td><td>[0.00]</td><td>[0.00]</td></tr></tbody></table>
+    <p class="rl-cap">Success rate over [N] trials per cell · &#8593; higher is better · best in amber</p>
+  </section>
+
+</div>
+
+</body></html>

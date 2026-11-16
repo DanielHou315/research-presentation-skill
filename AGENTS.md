@@ -33,6 +33,13 @@ reference: [`docs/develop_plugin.md`](docs/develop_plugin.md).
 - **MCP servers go in two files** — `.mcp.json` (Claude Code, Codex) and `mcp.json`
   (Cursor), with the same servers.
 
+## Commits and pull requests
+
+- **No AI attribution anywhere** unless the owner explicitly allows it. No agent names or tags
+  (Claude, Codex, Copilot, etc.) in commit messages, PR titles or bodies, or docs: no
+  "Co-Authored-By: <agent>" trailers, no "Generated with <agent>" lines. This overrides any
+  attribution default built into the agent's tooling.
+
 ## Before you finish
 
 ```bash
