@@ -40,17 +40,45 @@ skills/research-talk-crafter/
 
 ## Themes
 
-| Theme | Use for | Fonts | Source |
-|---|---|---|---|
-| Notebook Tabs | thesis / capstone defenses, lectures | Bodoni Moda + DM Sans | [Zara Zhang](https://open-design.ai/plugins/example-fs-notebook-tabs/), MIT |
-| Pentagram Grid | results-heavy talks ("ours" = the red bar) | Helvetica Neue | [huashu / alchaincyf](https://open-design.ai/plugins/example-huashu-pentagram-grid/), MIT |
-| Product Launch | job talks, invited talks | Fraunces + Outfit + JetBrains Mono | [lewislulu / Open Design](https://open-design.ai/plugins/example-html-ppt-product-launch/), MIT + Apache-2.0 |
-| Tech Sharing | systems and robotics-software talks | Sora + IBM Plex Sans/Mono | [lewislulu / Open Design](https://open-design.ai/plugins/example-html-ppt-tech-sharing/), MIT + Apache-2.0 |
-| Cyber Terminal | live tooling demos in dark rooms | JetBrains Mono + Geist | [lewislulu / Open Design](https://open-design.ai/plugins/example-html-ppt-hermes-cyber-terminal/), MIT + Apache-2.0 |
+Five locked themes. Each preview shows three slides from the theme's seed deck and one of the
+research slides added for this skill (figure, robot video, equation or results table). Bracketed text
+on the research slides is placeholder content.
+
+### Notebook Tabs  ·  `notebook-tabs`
+
+![Notebook Tabs theme: seed slides and a research slide](docs/images/themes/notebook-tabs.png)
+
+**Use for:** thesis and capstone defenses, student talks, lectures. **Fonts:** Bodoni Moda + DM Sans. **Source:** [Zara Zhang](https://open-design.ai/plugins/example-fs-notebook-tabs/), MIT. [Spec](skills/research-talk-crafter/themes/notebook-tabs/THEME.md)
+
+### Pentagram Grid  ·  `pentagram-grid`
+
+![Pentagram Grid theme: seed slides and a research slide](docs/images/themes/pentagram-grid.png)
+
+**Use for:** results-heavy talks and benchmark comparisons ("ours" is the red bar). **Fonts:** Helvetica Neue. **Source:** [huashu / alchaincyf](https://open-design.ai/plugins/example-huashu-pentagram-grid/), MIT. [Spec](skills/research-talk-crafter/themes/pentagram-grid/THEME.md)
+The preview was rendered on Linux, where Helvetica Neue isn't installed and a substitute sans is used; on macOS it renders in Helvetica Neue.
+
+### Product Launch  ·  `product-launch`
+
+![Product Launch theme: seed slides and a research slide](docs/images/themes/product-launch.png)
+
+**Use for:** job talks, invited talks, narrative openings. **Fonts:** Fraunces + Outfit + JetBrains Mono. **Source:** [lewislulu / Open Design](https://open-design.ai/plugins/example-html-ppt-product-launch/), MIT + Apache-2.0. [Spec](skills/research-talk-crafter/themes/product-launch/THEME.md)
+
+### Tech Sharing  ·  `tech-sharing`
+
+![Tech Sharing theme: seed slides and a research slide](docs/images/themes/tech-sharing.png)
+
+**Use for:** systems and robotics-software talks, code walkthroughs. **Fonts:** Sora + IBM Plex Sans + IBM Plex Mono. **Source:** [lewislulu / Open Design](https://open-design.ai/plugins/example-html-ppt-tech-sharing/), MIT + Apache-2.0. [Spec](skills/research-talk-crafter/themes/tech-sharing/THEME.md)
+
+### Cyber Terminal  ·  `cyber-terminal`
+
+![Cyber Terminal theme: seed slides and a research slide](docs/images/themes/cyber-terminal.png)
+
+**Use for:** live tooling and demo talks in dark rooms. **Fonts:** JetBrains Mono + Geist. **Source:** [lewislulu / Open Design](https://open-design.ai/plugins/example-html-ppt-hermes-cyber-terminal/), MIT + Apache-2.0. [Spec](skills/research-talk-crafter/themes/cyber-terminal/THEME.md)
 
 The themes are vendored unmodified with their licences; see [`THIRD_PARTY.md`](THIRD_PARTY.md).
 They are web-dense (body text 13–26px on a 1920×1080 canvas). Sizes are kept as shipped by
-design; each THEME.md flags the small ones.
+design; each THEME.md flags the small ones. Preview images are rendered at 1920×1080 in
+headless Chrome from the files in `skills/research-talk-crafter/themes/`.
 
 ## Checking a deck
 
